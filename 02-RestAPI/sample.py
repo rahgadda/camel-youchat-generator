@@ -1,10 +1,8 @@
-from youdotcom import Webdriver, Code # import all the classes
+import requests 
 
-driver = Webdriver().driver # setting up the webdriver. use `webdriver_path=` if the pre-installed one does not work.
+API_KEY = "ZD6K10CXBWLX5SHOE51WCUU8FC2U82N08NT" 
+message="write%20camel%20dsl%20in%20yaml%20to%20read%20csv%20file"
 
-code = Code.find_code(driver, search="how to make an python loop?") # get all the code displayed on screen. passing the driver and search string.
-
-for string in code['response']: # loop through all the code
-    print(string) # print 1 at an time.
-    
-print(code['time']) # print the time taken to complete you search.
+url = "https://api.betterapi.net/youdotcom/chat?message="+message+"&key=" + API_KEY 
+json = requests.get(url).json()
+print(json["message"]) 
