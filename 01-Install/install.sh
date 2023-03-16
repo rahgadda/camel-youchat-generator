@@ -1,4 +1,3 @@
 #!/bin/bash
 
-pip install youdotcom
-pip install youdotcom --upgrade
+npm install youchat-camel
