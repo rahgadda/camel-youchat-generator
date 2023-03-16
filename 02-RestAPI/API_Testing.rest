@@ -1,0 +1,7 @@
+POST http://localhost:3000/apiKey
+Content-Type: application/json
+Accept: application/json
+
+{
+    "apiKey":"ZD6K10CXBWLX5SHOE51WCUU8FC2U82N08NT"
+}
