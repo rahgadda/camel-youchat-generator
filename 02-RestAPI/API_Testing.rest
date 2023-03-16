@@ -1,7 +1,17 @@
+### Update you.com API Key
 POST http://localhost:3000/apiKey
 Content-Type: application/json
 Accept: application/json
 
 {
     "apiKey":"ZD6K10CXBWLX5SHOE51WCUU8FC2U82N08NT"
+}
+
+### Get Camel Yaml
+POST http://localhost:3000/camel-dsl
+Content-Type: application/json
+Accept: application/json
+
+{
+    "text":"read csv file"
 }
