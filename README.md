@@ -1,7 +1,7 @@
-# Camel Yaml DSL Generator using you.com/code
+# Camel Yaml DSL Generator using you.com/chat
 
 ## Overview
-- As the title suggest, we are trying to used `you.com/code` to generate Camel Yaml DSL.
+- As the title suggest, we are trying to used `you.com/chat` to generate Camel Yaml DSL.
 
 
 ## Reference
