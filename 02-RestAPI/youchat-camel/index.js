@@ -4,6 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const updateDotenv = require('update-dotenv');
 const regex = /`{3}([\s\S]+?)`{3}/;
+const YamlValidator = require('yaml-validator');
+
 
 // Initialize variables
 var app = express();
@@ -27,7 +29,9 @@ app.post('/apiKey', function(request, response){
     
     API_KEY = process.env.API_KEY;
 
-    response.send({ status : 'API Key Added Successfully' });
+    response
+    .status(201)
+    .send({ status : 'API Key Added Successfully' });
 })
 // POST WS to get yaml data
 .post('/camel-dsl', function(request, response){ 
@@ -41,22 +45,31 @@ app.post('/apiKey', function(request, response){
     axios.get(URL+txt+"&key="+API_KEY)
          .then(resp => {
             let str = resp.data.message;
-            // let m;
-            // if ((m = regex.exec(str)) !== null) {
-            //     console.log(m[0]);
-            //     // m.forEach((match, groupIndex) => {
-            //     //     console.log(`Found match, group ${groupIndex}: ${match}`);
-            //     // });
-            // }
             if(str==="Due to cloudflare limits i'm curently getting new cookies, please try again."){
-                console.log("Request Token Exhausted");     
+                console.log("Request Token Exhausted");
+                response
+                .status(500)
+                .setHeader('content-type', 'application/yaml')
+                .send("status: Request Token Exhausted. Add new API Key");     
             }else{
+                let responseMessage = regex.exec(str)[1];
                 console.log('Chatbot Message -> '+str)
-                console.log('Extracted Message -> '+ regex.exec(str)[1]);
+                console.log('Extracted Message -> '+ responseMessage);
+                let validator = new YamlValidator(responseMessage);
+                console.log('Validator Report -> '+validator.report());
+
+                response
+                .status(201)
+                .setHeader('content-type', 'application/yaml')
+                .send(responseMessage);  
             }
           })
           .catch(function (error) {
-            console.log('Error Processing Request ->');
+            console.log('Error Processing Request');
+            response
+                .status(500)
+                .setHeader('content-type', 'application/yaml')
+                .send("status : Exception");
           });
 });
 

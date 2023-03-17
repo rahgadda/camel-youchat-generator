@@ -2,7 +2,7 @@
 
 # Generate API https://api.betterapi.net/about/
 
-cd camel-youchat-generator/02-RestAPI/youchat-camel
+cd 02-RestAPI/youchat-camel
 
 npm install
 npm start

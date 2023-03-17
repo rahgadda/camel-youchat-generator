@@ -10,7 +10,7 @@ Accept: application/json
 ### POST Camel Yaml
 POST http://localhost:3000/camel-dsl
 Content-Type: application/json
-Accept: application/json
+Accept: application/yaml
 
 {
     "text":"read csv file"
