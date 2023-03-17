@@ -4,7 +4,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "apiKey":"ZD6K10CXBWLX5SHOE51WCUU8FC2U82N08NT"
+    "apiKey":"POT5GI2F7DDHUQ710JY96TFCEGYWWOJ44O"
 }
 
 ### POST Camel Yaml

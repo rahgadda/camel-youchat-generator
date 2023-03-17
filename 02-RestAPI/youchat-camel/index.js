@@ -26,6 +26,8 @@ app.post('/apiKey', function(request, response){
     }).then((newEnv) => console.log('Updated API Key - ', newEnv.API_KEY))
     
     API_KEY = process.env.API_KEY;
+
+    response.send({ status : 'API Key Added Successfully' });
 })
 // POST WS to get yaml data
 .post('/camel-dsl', function(request, response){ 
@@ -46,8 +48,15 @@ app.post('/apiKey', function(request, response){
             //     //     console.log(`Found match, group ${groupIndex}: ${match}`);
             //     // });
             // }
-            console.log('Chatbot Message -> '+str)
-            console.log('Extracted Message -> '+ regex.exec(str)[1]);
+            if(str==="Due to cloudflare limits i'm curently getting new cookies, please try again."){
+                console.log("Request Token Exhausted");     
+            }else{
+                console.log('Chatbot Message -> '+str)
+                console.log('Extracted Message -> '+ regex.exec(str)[1]);
+            }
+          })
+          .catch(function (error) {
+            console.log('Error Processing Request ->');
           });
 });
 
